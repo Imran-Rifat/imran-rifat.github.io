@@ -591,7 +591,7 @@
         .unmute-btn {
             position: absolute;
             left: 50%;
-            transform: translateX(-50%);
+            transform: translateX(-50%) translateY(6px);
             bottom: 18px;
             padding: 10px 14px;
             border-radius: 999px;
@@ -602,6 +602,24 @@
             cursor: pointer;
             box-shadow: 0 8px 20px rgba(2,6,23,0.28);
             z-index: 6;
+            opacity: 0;
+            transition: opacity 260ms ease, transform 260ms ease;
+            pointer-events: none;
+        }
+
+        .unmute-btn.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+            pointer-events: auto;
+        }
+
+        .video-shell .video-fallback {
+            transition: opacity 260ms ease, visibility 260ms ease;
+        }
+
+        .video-shell.playing .video-fallback {
+            opacity: 0;
+            visibility: hidden;
         }
 
         .video-fallback {
@@ -1030,7 +1048,7 @@
                                     <source src="asset/price-match/app-demo.mov" type="video/quicktime">
                                     Your browser does not support this video format.
                                 </video>
-                                <button id="unmuteBtn" class="unmute-btn" hidden aria-label="Unmute video">Unmute</button>
+                                <button id="unmuteBtn" class="unmute-btn" aria-label="Unmute video">Unmute</button>
                                 <div class="video-fallback">
                                     <i class="fas fa-circle-play"></i>
                                     <span>Vertical app reel: scan, compare, save, upgrade.</span>
@@ -1199,26 +1217,34 @@
             const unmuteBtn = document.getElementById('unmuteBtn');
             if (!demoVideo || !demoDeviceEl) return;
 
+            const videoShell = demoVideo.closest('.video-shell');
+
             // When demo enters view, attempt to play (muted first), then try to unmute.
             const io = new IntersectionObserver(async (entries) => {
                 for (const entry of entries) {
                     if (entry.isIntersecting) {
                         try {
+                            // play muted first (most browsers allow muted autoplay)
                             demoVideo.muted = true;
                             await demoVideo.play();
-                            // Try to unmute programmatically; may be blocked by browser autoplay policies
+                            // mark UI as playing (hide fallback overlay)
+                            if (videoShell) videoShell.classList.add('playing');
+
+                            // try to enable audio — may be blocked by policy
                             demoVideo.muted = false;
                             await demoVideo.play();
-                            // If succeeded, hide the unmute button
-                            if (unmuteBtn) unmuteBtn.hidden = true;
+                            // autoplay with audio succeeded
+                            if (unmuteBtn) unmuteBtn.classList.remove('show');
                         } catch (err) {
-                            // Autoplay with sound is blocked; keep muted and show unmute UI
+                            // Autoplay with sound is blocked; stay muted and show unmute UI
                             demoVideo.muted = true;
-                            if (unmuteBtn) unmuteBtn.hidden = false;
+                            if (unmuteBtn) unmuteBtn.classList.add('show');
                         }
                     } else {
-                        // Pause when out of view
+                        // Pause and reset UI when out of view
                         try { demoVideo.pause(); } catch (e) {}
+                        if (videoShell) videoShell.classList.remove('playing');
+                        if (unmuteBtn) unmuteBtn.classList.remove('show');
                     }
                 }
             }, { threshold: 0.55 });
@@ -1231,10 +1257,11 @@
                     try {
                         demoVideo.muted = false;
                         await demoVideo.play();
-                        unmuteBtn.hidden = true;
+                        if (videoShell) videoShell.classList.add('playing');
+                        unmuteBtn.classList.remove('show');
                     } catch (e) {
                         // If still blocked, keep showing button
-                        unmuteBtn.hidden = false;
+                        unmuteBtn.classList.add('show');
                     }
                 });
             }
