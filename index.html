@@ -23,155 +23,82 @@
             box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-        
-        body {
-            background-color: var(--light);
-            color: var(--dark);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-        
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        section {
-            padding: 80px 0;
-        }
-        
-        h1, h2, h3, h4 {
-            margin-bottom: 1rem;
-            line-height: 1.2;
-        }
-        
-        h1 {
-            font-size: 2.5rem;
-        }
-        
-        h2 {
-            font-size: 2rem;
-            text-align: center;
-            margin-bottom: 3rem;
-            position: relative;
-        }
-        
-        h2:after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background: var(--primary);
-        }
-        
-        .btn {
-            display: inline-block;
-            padding: 12px 28px;
-            background: var(--primary);
-            color: white;
-            border-radius: 5px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-        }
-        
-        .btn:hover {
-            background: var(--primary-dark);
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-        
-        header {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            transition: all 0.3s ease;
-        }
-        
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 0;
-        }
-        
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--primary);
-        }
-        
-        .nav-links {
-            display: flex;
-            list-style: none;
-        }
-        
-        .nav-links li {
-            margin-left: 2rem;
-        }
-        
-        .nav-links a {
-            text-decoration: none;
-            color: var(--dark);
-            font-weight: 500;
-            transition: color 0.3s;
-            position: relative;
-        }
-        
-        .nav-links a:after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--primary);
-            transition: width 0.3s ease;
-        }
-        
-        .nav-links a:hover:after {
-            width: 100%;
-        }
-        
-        .hero {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-            color: white;
-            padding: 150px 0 100px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .hero:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" preserveAspectRatio="none"><polygon fill="rgba(255,255,255,0.05)" points="1000,1000 0,1000 0,0 500,500"/></svg>');
-            background-size: cover;
-        }
-        
-        .hero-content {
-            position: relative;
-            z-index: 1;
-        }
-        
-        .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
+                html {
+                    overflow-x: hidden;
+                }
+
+                .container {
+                    width: 90%;
+                    max-width: 1200px;
+                    margin: 0 auto;
+                    padding: 0 20px;
+                }
+
+                section {
+                    padding: 80px 0;
+                }
+
+                h1, h2, h3, h4 {
+                    margin-bottom: 1rem;
+                    line-height: 1.2;
+                }
+
+                h1 {
+                    font-size: 2.5rem;
+                }
+
+                h2 {
+                    font-size: 2rem;
+                    text-align: center;
+                    margin-bottom: 3rem;
+                    position: relative;
+                }
+
+                h2:after {
+                    content: '';
+                    position: absolute;
+                    bottom: -10px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    width: 80px;
+                    height: 4px;
+                    background: var(--primary);
+                }
+
+                .btn {
+                    display: inline-block;
+                    padding: 12px 28px;
+                    background: var(--primary);
+                    color: white;
+                    border-radius: 5px;
+                    text-decoration: none;
+                    font-weight: 600;
+                    transition: all 0.3s ease;
+                    border: none;
+                    cursor: pointer;
+                }
+
+                .btn:hover {
+                    background: var(--primary-dark);
+                    transform: translateY(-2px);
+                    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+                }
+
+                header {
+                    background: rgba(255, 255, 255, 0.95);
+                    backdrop-filter: blur(10px);
+                    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+                    position: fixed;
+                    width: 100%;
+                    top: 0;
+                    z-index: 1000;
+                    transition: all 0.3s ease;
+                }
+
+                nav {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
             animation: fadeInUp 1s ease;
         }
         
@@ -629,7 +556,7 @@
                     <div style="width: 100%; height: 500px; background: linear-gradient(45deg, var(--primary), var(--primary-dark)); display: flex; align-items: center; justify-content: center; border-radius: 10px; color: white;">
                         <div style="text-align: center;">
                             <i class="fas fa-user" style="font-size: 4rem; margin-bottom: 20px;"></i>
-                            <p><img src="asset/profile/profile_pic2.png" alt="Your Profile Photo" style="width: 80%; height: 300px; object-fit: cover; border-radius: 10px;"></p>
+                            <p><img src="asset/profile/profile_pic_1.jpg" alt="Your Profile Photo" style="width: 80%; height: 300px; object-fit: cover; border-radius: 10px;"></p>
                         </div>
                     </div>
                 </div>
@@ -660,20 +587,22 @@
                     </div>
                 </div>
                 
+>>>>>>> Stashed changes
                 <div class="project-card" data-aos="fade-up" data-aos-delay="400" onclick="openProject('price-checker-pro.html')">
                     <div class="project-img">
-                        <div style="width: 100%; height: 100%; background: linear-gradient(45deg, #f093fb, #f5576c); display: flex; align-items: center; justify-content: center; color: white;">
-                            <i class="fas fa-receipt" style="font-size: 3rem;"></i>
+                        <div style="width: 100%; height: 100%; background: linear-gradient(45deg, #0369a1, #22c55e); display: flex; align-items: center; justify-content: center; color: white;">
+                            <i class="fas fa-tags" style="font-size: 3rem;"></i>
                         </div>
                     </div>
                     <div class="project-content">
-                        <h3>Price Checker Pro</h3>
-                        <p>AI-powered receipt scanning and intelligent price comparison mobile app</p>
+                        <h3>Price Match Paradise</h3>
+                        <p>Commercial-ready savings app with AI receipt scanning, price matching, and Pro subscription upgrade flows</p>
                         <div class="project-tags">
                             <span class="project-tag">Flutter</span>
                             <span class="project-tag">Dart</span>
-                            <span class="project-tag">GPT-4 Vision</span>
+                            <span class="project-tag">AI Vision</span>
                             <span class="project-tag">Firebase</span>
+                            <span class="project-tag">Subscriptions</span>
                         </div>
                     </div>
                 </div>
