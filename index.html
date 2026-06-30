@@ -3,797 +3,760 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Imran Hossan Rifat | Portfolio</title>
+    <title>Imran Hossan Rifat — Developer & CS Student</title>
+    <meta name="description" content="Computing Science student at Thompson Rivers University. Full-stack developer specializing in AI-powered apps, Flutter, Python and mobile development.">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <style>
         :root {
-            --primary: #2563eb;
-            --primary-dark: #1d4ed8;
-            --secondary: #64748b;
-            --dark: #1e293b;
-            --light: #f8fafc;
-            --gray: #e2e8f0;
-            --success: #10b981;
+            --night: #07111f;
+            --night-2: #0d1b2e;
+            --night-3: #0a1628;
+            --brand: #0ea5e9;
+            --brand-dark: #0369a1;
+            --accent: #22c55e;
+            --purple: #8b5cf6;
+            --warn: #f59e0b;
+            --ink: #0f172a;
+            --muted: #526071;
         }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-                html {
-                    overflow-x: hidden;
-                }
+        * { margin:0; padding:0; box-sizing:border-box; font-family:"Segoe UI",Tahoma,Geneva,Verdana,sans-serif; }
+        html { scroll-behavior:smooth; scroll-padding-top:78px; overflow-x:hidden; }
+        body { background:var(--night); color:#e2e8f0; line-height:1.6; overflow-x:hidden; }
+        a { color:inherit; text-decoration:none; }
+        .container { width:min(1120px,90%); margin:0 auto; }
 
-                .container {
-                    width: 90%;
-                    max-width: 1200px;
-                    margin: 0 auto;
-                    padding: 0 20px;
-                }
+        /* ── NAV ── */
+        .site-nav {
+            position:fixed; top:0; left:0; right:0; z-index:100;
+            display:flex; align-items:center; justify-content:space-between;
+            padding:14px clamp(16px,4vw,40px);
+            background:rgba(7,17,31,.55); backdrop-filter:blur(14px);
+            border-bottom:1px solid rgba(255,255,255,.08);
+            transition:background .3s, padding .3s;
+        }
+        .site-nav.scrolled { background:rgba(7,17,31,.94); padding-top:10px; padding-bottom:10px; }
+        .nav-logo { font-size:1.1rem; font-weight:900; color:#fff; letter-spacing:-.3px; }
+        .nav-logo span { color:#67e8f9; }
+        .nav-links { display:flex; align-items:center; gap:24px; list-style:none; }
+        .nav-links a { color:#94a3b8; font-size:.9rem; font-weight:600; transition:color .2s; }
+        .nav-links a:hover { color:#fff; }
+        .nav-cta {
+            background:linear-gradient(135deg,#0ea5e9,#22c55e);
+            color:#fff !important; padding:9px 18px; border-radius:999px;
+            font-weight:800 !important; box-shadow:0 6px 18px rgba(14,165,233,.35);
+            transition:transform .2s, box-shadow .2s !important;
+        }
+        .nav-cta:hover { transform:translateY(-1px); box-shadow:0 10px 26px rgba(14,165,233,.45) !important; }
+        @media(max-width:720px){ .nav-links a:not(.nav-cta){ display:none; } }
 
-                section {
-                    padding: 80px 0;
-                }
+        /* ── HERO ── */
+        .hero {
+            min-height:100vh; padding:120px 0 80px;
+            display:flex; align-items:center;
+            background:
+                radial-gradient(circle at 25% 40%, rgba(14,165,233,.18), transparent 48%),
+                radial-gradient(circle at 78% 20%, rgba(139,92,246,.12), transparent 40%),
+                radial-gradient(circle at 60% 85%, rgba(34,197,94,.08), transparent 35%),
+                var(--night);
+            position:relative; overflow:hidden;
+        }
+        .hero-particles { position:absolute; inset:0; pointer-events:none; overflow:hidden; z-index:0; }
+        .hero-particles span {
+            position:absolute; border-radius:50%;
+            background:rgba(103,232,249,.09);
+            animation:drift linear infinite;
+        }
+        @keyframes drift {
+            0%{transform:translateY(100vh) scale(0);opacity:0}
+            8%{opacity:1} 92%{opacity:.4}
+            100%{transform:translateY(-80px) scale(1);opacity:0}
+        }
+        .hero-inner {
+            position:relative; z-index:1;
+            display:grid; grid-template-columns:1.1fr .9fr; gap:56px; align-items:center;
+        }
 
-                h1, h2, h3, h4 {
-                    margin-bottom: 1rem;
-                    line-height: 1.2;
-                }
+        /* eyebrow pill */
+        .eyebrow {
+            display:inline-flex; align-items:center; gap:8px;
+            padding:7px 14px; border-radius:999px;
+            background:rgba(14,165,233,.12); border:1px solid rgba(14,165,233,.28);
+            color:#67e8f9; font-size:.8rem; font-weight:800;
+            text-transform:uppercase; letter-spacing:.5px;
+            margin-bottom:22px;
+        }
+        .eyebrow span { display:inline-block; width:7px; height:7px; border-radius:50%; background:#22c55e; animation:blink 1.8s ease-in-out infinite; }
+        @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.3} }
 
-                h1 {
-                    font-size: 2.5rem;
-                }
+        .hero h1 { font-size:clamp(2.4rem,5.5vw,4.4rem); line-height:1.04; color:#fff; margin-bottom:20px; }
+        .hero h1 .grad {
+            background:linear-gradient(120deg,#e0f2fe 0%,#67e8f9 35%,#86efac 65%,#c4b5fd 90%);
+            background-size:200% auto;
+            -webkit-background-clip:text; background-clip:text; color:transparent;
+            animation:shimmer 5s linear infinite;
+        }
+        @keyframes shimmer{ to{background-position:200% center} }
+        .hero-desc { color:#64748b; font-size:1.08rem; max-width:500px; margin-bottom:32px; line-height:1.75; }
 
-                h2 {
-                    font-size: 2rem;
-                    text-align: center;
-                    margin-bottom: 3rem;
-                    position: relative;
-                }
+        .hero-btns { display:flex; gap:12px; flex-wrap:wrap; margin-bottom:40px; }
+        .btn {
+            display:inline-flex; align-items:center; gap:9px;
+            padding:13px 22px; border-radius:9px; border:1px solid transparent;
+            font-weight:800; font-size:.95rem;
+            transition:transform .2s, box-shadow .2s, background .2s;
+        }
+        .btn:hover { transform:translateY(-2px); }
+        .btn-primary { background:var(--accent); color:#052e16; box-shadow:0 12px 28px rgba(34,197,94,.24); }
+        .btn-primary:hover { box-shadow:0 18px 38px rgba(34,197,94,.36); }
+        .btn-ghost { border-color:rgba(255,255,255,.18); color:#e2e8f0; background:rgba(255,255,255,.06); }
+        .btn-ghost:hover { background:rgba(255,255,255,.12); }
+        .btn-purple { border-color:rgba(139,92,246,.3); color:#c4b5fd; background:rgba(139,92,246,.1); }
+        .btn-purple:hover { background:rgba(139,92,246,.18); }
 
-                h2:after {
-                    content: '';
-                    position: absolute;
-                    bottom: -10px;
-                    left: 50%;
-                    transform: translateX(-50%);
-                    width: 80px;
-                    height: 4px;
-                    background: var(--primary);
-                }
+        .hero-chips { display:flex; flex-wrap:wrap; gap:10px; }
+        .chip {
+            display:inline-flex; align-items:center; gap:7px;
+            padding:8px 13px; border-radius:8px;
+            background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.1);
+            color:#94a3b8; font-size:.83rem;
+        }
+        .chip i { color:#67e8f9; }
 
-                .btn {
-                    display: inline-block;
-                    padding: 12px 28px;
-                    background: var(--primary);
-                    color: white;
-                    border-radius: 5px;
-                    text-decoration: none;
-                    font-weight: 600;
-                    transition: all 0.3s ease;
-                    border: none;
-                    cursor: pointer;
-                }
+        /* profile card */
+        .profile-card {
+            background:rgba(255,255,255,.03);
+            border:1px solid rgba(255,255,255,.09); border-radius:22px;
+            padding:36px 32px; text-align:center;
+            position:relative; overflow:hidden;
+        }
+        .profile-card::before {
+            content:''; position:absolute; top:-50%; left:-50%;
+            width:200%; height:200%;
+            background:conic-gradient(from 0deg,rgba(14,165,233,.05),rgba(139,92,246,.04),rgba(34,197,94,.03),transparent 55%);
+            animation:spin 18s linear infinite;
+        }
+        @keyframes spin{ to{transform:rotate(360deg)} }
+        .profile-img-ring {
+            position:relative; z-index:1;
+            width:138px; height:138px; margin:0 auto 18px;
+            border-radius:50%;
+            background:linear-gradient(135deg,#0ea5e9,#8b5cf6,#22c55e);
+            padding:3px;
+        }
+        .profile-img-ring img {
+            width:100%; height:100%; border-radius:50%; object-fit:cover; display:block;
+        }
+        .profile-img-ring .dot {
+            position:absolute; bottom:7px; right:7px;
+            width:18px; height:18px; border-radius:50%;
+            background:var(--accent); border:3px solid var(--night);
+        }
+        .profile-name { position:relative; z-index:1; font-size:1.4rem; font-weight:900; color:#fff; margin-bottom:4px; }
+        .profile-role { position:relative; z-index:1; color:#67e8f9; font-size:.85rem; font-weight:700; margin-bottom:6px; }
+        .profile-uni  { position:relative; z-index:1; color:#475569; font-size:.8rem; margin-bottom:18px; }
+        .profile-pills {
+            position:relative; z-index:1;
+            display:flex; flex-wrap:wrap; gap:7px; justify-content:center; margin-bottom:20px;
+        }
+        .pill {
+            padding:4px 11px; border-radius:999px; font-size:.73rem; font-weight:700;
+            background:rgba(14,165,233,.12); border:1px solid rgba(14,165,233,.22); color:#bae6fd;
+        }
+        .profile-socials { position:relative; z-index:1; display:flex; justify-content:center; gap:10px; }
+        .soc {
+            width:38px; height:38px; border-radius:10px;
+            background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.1);
+            display:grid; place-items:center; color:#64748b; font-size:.95rem;
+            transition:background .2s, color .2s, transform .2s;
+        }
+        .soc:hover { background:rgba(14,165,233,.18); color:#67e8f9; transform:translateY(-3px); }
 
-                .btn:hover {
-                    background: var(--primary-dark);
-                    transform: translateY(-2px);
-                    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-                }
+        /* ── SECTION BASE ── */
+        .section { padding:92px 0; }
+        .sec-kicker { color:#67e8f9; font-size:.75rem; font-weight:900; text-transform:uppercase; letter-spacing:1px; margin-bottom:10px; }
+        .sec-h2 { font-size:clamp(1.8rem,3.5vw,2.8rem); color:#fff; margin-bottom:14px; line-height:1.1; }
+        .sec-lead { color:#475569; font-size:1.02rem; max-width:600px; margin-bottom:48px; }
 
-                header {
-                    background: rgba(255, 255, 255, 0.95);
-                    backdrop-filter: blur(10px);
-                    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-                    position: fixed;
-                    width: 100%;
-                    top: 0;
-                    z-index: 1000;
-                    transition: all 0.3s ease;
-                }
+        /* ── ABOUT ── */
+        .about-bg { background:var(--night-2); }
+        .about-grid { display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:start; }
+        .about-body p { color:#64748b; font-size:.98rem; line-height:1.8; margin-bottom:16px; }
 
-                nav {
-                    display: flex;
-                    justify-content: space-between;
-                    align-items: center;
-            animation: fadeInUp 1s ease;
+        .skill-groups { display:grid; gap:16px; margin-top:28px; }
+        .skill-group {
+            background:rgba(255,255,255,.03); border:1px solid rgba(255,255,255,.07);
+            border-radius:12px; padding:18px 20px;
+            transition:border-color .2s, background .2s;
         }
-        
-        .hero p {
-            font-size: 1.2rem;
-            max-width: 700px;
-            margin: 0 auto 2rem;
-            animation: fadeInUp 1s ease 0.2s both;
+        .skill-group:hover { border-color:rgba(14,165,233,.2); background:rgba(14,165,233,.04); }
+        .skill-group-label { color:#94a3b8; font-size:.75rem; font-weight:800; text-transform:uppercase; letter-spacing:.5px; margin-bottom:10px; }
+        .skill-tags-wrap { display:flex; flex-wrap:wrap; gap:7px; }
+        .stag {
+            padding:4px 10px; border-radius:6px; font-size:.76rem; font-weight:600;
+            background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.08); color:#94a3b8;
+            transition:background .2s, color .2s;
         }
-        
-        .hero-btns {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            flex-wrap: wrap;
-            animation: fadeInUp 1s ease 0.4s both;
+        .stag:hover { background:rgba(14,165,233,.15); color:#bae6fd; }
+
+        .edu-card {
+            background:rgba(255,255,255,.03); border:1px solid rgba(255,255,255,.07);
+            border-left:4px solid var(--brand);
+            border-radius:12px; padding:22px 24px;
+            transition:transform .2s;
         }
-        
-        /* About Section */
-        .about {
-            background: white;
-            position: relative;
+        .edu-card:hover { transform:translateX(6px); }
+        .edu-card h3 { color:#fff; font-size:1rem; margin-bottom:5px; }
+        .edu-card p { color:#475569; font-size:.88rem; line-height:1.65; }
+        .edu-card .badge { display:inline-block; margin-top:10px; padding:4px 10px; border-radius:6px; background:rgba(14,165,233,.12); border:1px solid rgba(14,165,233,.22); color:#67e8f9; font-size:.75rem; font-weight:700; }
+
+        /* ── EXPERIENCE ── */
+        .exp-card {
+            background:rgba(255,255,255,.03); border:1px solid rgba(255,255,255,.07);
+            border-left:4px solid var(--warn);
+            border-radius:12px; padding:22px 24px; margin-bottom:14px;
+            transition:transform .2s;
         }
-        
-        .about-content {
-            display: flex;
-            align-items: center;
-            gap: 50px;
+        .exp-card:hover { transform:translateX(6px); }
+        .exp-card .exp-head { display:flex; align-items:flex-start; justify-content:space-between; gap:12px; margin-bottom:8px; }
+        .exp-card h3 { color:#fff; font-size:.95rem; }
+        .exp-card .exp-co { color:#67e8f9; font-size:.88rem; font-weight:700; }
+        .exp-card .exp-date { color:#475569; font-size:.78rem; white-space:nowrap; }
+        .exp-card p { color:#475569; font-size:.87rem; line-height:1.65; }
+        .exp-badge { display:inline-block; margin-top:10px; padding:3px 10px; border-radius:6px; background:rgba(245,158,11,.12); border:1px solid rgba(245,158,11,.25); color:#fbbf24; font-size:.73rem; font-weight:800; }
+
+        /* ── PROJECTS ── */
+        .projects-bg { background:var(--night); }
+        .project-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:24px; }
+        @media(min-width:1080px){ .project-grid.three { grid-template-columns:repeat(3,1fr); } }
+
+        .proj-card {
+            background:rgba(255,255,255,.025);
+            border:1px solid rgba(255,255,255,.07); border-radius:18px;
+            overflow:hidden; cursor:pointer;
+            transition:transform .3s, border-color .3s, box-shadow .3s;
+            display:flex; flex-direction:column;
         }
-        
-        .about-text {
-            flex: 1;
+        .proj-card:hover {
+            transform:translateY(-8px);
+            border-color:rgba(14,165,233,.28);
+            box-shadow:0 32px 72px rgba(0,0,0,.4), 0 0 40px rgba(14,165,233,.07);
         }
-        
-        .about-image {
-            flex: 1;
-            text-align: center;
-            position: relative;
+        .proj-thumb {
+            height:180px; display:flex; align-items:center; justify-content:center;
+            font-size:3rem; position:relative; overflow:hidden;
         }
-        
-        .about-image img {
-            max-width: 100%;
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
+        .proj-thumb .proj-icon { position:relative; z-index:1; }
+        .proj-body { padding:26px; flex:1; display:flex; flex-direction:column; }
+        .proj-title { font-size:1.15rem; font-weight:800; color:#fff; margin-bottom:7px; }
+        .proj-desc { color:#475569; font-size:.9rem; line-height:1.65; flex:1; margin-bottom:18px; }
+        .proj-tags { display:flex; flex-wrap:wrap; gap:7px; margin-bottom:18px; }
+        .ptag {
+            padding:3px 9px; border-radius:6px; font-size:.73rem; font-weight:700;
+            background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.08); color:#64748b;
         }
-        
-        .about-image:hover img {
-            transform: scale(1.02);
+        .proj-links { display:flex; gap:10px; }
+        .plink {
+            display:inline-flex; align-items:center; gap:6px;
+            padding:8px 14px; border-radius:7px; font-size:.8rem; font-weight:800;
+            transition:transform .2s, background .2s;
         }
-        
-        .skills {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 20px;
+        .plink:hover { transform:translateY(-2px); }
+        .plink-primary { background:var(--accent); color:#052e16; }
+        .plink-ghost { border:1px solid rgba(255,255,255,.12); color:#94a3b8; background:rgba(255,255,255,.04); }
+        .plink-ghost:hover { background:rgba(255,255,255,.1); }
+        .plink-live { border:1px solid rgba(34,197,94,.25); color:#86efac; background:rgba(34,197,94,.08); }
+        .plink-live:hover { background:rgba(34,197,94,.15); }
+
+        /* live badge */
+        .live-dot {
+            display:inline-flex; align-items:center; gap:6px;
+            background:rgba(34,197,94,.1); border:1px solid rgba(34,197,94,.25);
+            border-radius:999px; padding:3px 10px 3px 7px;
+            color:#86efac; font-size:.73rem; font-weight:800;
         }
-        
-        .skill-tag {
-            background: var(--gray);
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
-            cursor: pointer;
+        .live-dot::before { content:''; display:block; width:7px; height:7px; border-radius:50%; background:#22c55e; animation:blink 1.8s ease-in-out infinite; }
+
+        /* ── CONTACT ── */
+        .contact-bg { background:var(--night-2); }
+        .contact-grid { display:grid; grid-template-columns:1fr 1fr; gap:48px; }
+        .contact-info-list { display:flex; flex-direction:column; gap:18px; margin-bottom:28px; }
+        .contact-row {
+            display:flex; gap:16px; align-items:center;
+            background:rgba(255,255,255,.03); border:1px solid rgba(255,255,255,.06);
+            border-radius:12px; padding:16px 18px;
+            transition:border-color .2s, background .2s;
         }
-        
-        .skill-tag:hover {
-            background: var(--primary);
-            color: white;
-            transform: translateY(-2px);
+        .contact-row:hover { border-color:rgba(14,165,233,.2); background:rgba(14,165,233,.04); }
+        .ci-icon {
+            width:40px; height:40px; border-radius:10px; flex-shrink:0;
+            background:rgba(14,165,233,.12); color:#67e8f9;
+            display:grid; place-items:center; font-size:.95rem;
         }
-        
-        .education-timeline {
-            margin-top: 40px;
+        .ci-label { color:#475569; font-size:.75rem; font-weight:700; text-transform:uppercase; letter-spacing:.4px; }
+        .ci-val { color:#cbd5e1; font-size:.9rem; }
+
+        .socials-row { display:flex; gap:10px; margin-top:4px; }
+        .soc-big {
+            display:inline-flex; align-items:center; gap:8px;
+            padding:10px 16px; border-radius:10px; font-size:.85rem; font-weight:700;
+            background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.1); color:#94a3b8;
+            transition:background .2s, color .2s, transform .2s;
         }
-        
-        .timeline-item {
-            background: var(--light);
-            padding: 25px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            border-left: 4px solid var(--primary);
-            transition: transform 0.3s ease;
-        }
-        
-        .timeline-item:hover {
-            transform: translateX(10px);
-        }
-        
-        /* Projects Section */
-        .project-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 30px;
-        }
-        
-        .project-card {
-            background: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s ease;
-            cursor: pointer;
-            position: relative;
-        }
-        
-        .project-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-        }
-        
-        .project-card:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: var(--primary);
-            transform: scaleX(0);
-            transition: transform 0.3s ease;
-        }
-        
-        .project-card:hover:before {
-            transform: scaleX(1);
-        }
-        
-        .project-img {
-            height: 200px;
-            background-color: var(--gray);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--secondary);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .project-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-        
-        .project-card:hover .project-img img {
-            transform: scale(1.05);
-        }
-        
-        .project-content {
-            padding: 25px;
-        }
-        
-        .project-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin: 15px 0;
-        }
-        
-        .project-tag {
-            background: var(--gray);
-            padding: 3px 10px;
-            border-radius: 15px;
-            font-size: 0.8rem;
-        }
-        
-        /* Contact Section */
-        .contact {
-            background: linear-gradient(135deg, var(--dark) 0%, #2d3748 100%);
-            color: white;
-            position: relative;
-        }
-        
-        .contact:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" preserveAspectRatio="none"><polygon fill="rgba(255,255,255,0.03)" points="0,0 1000,0 1000,1000 0,500"/></svg>');
-            background-size: cover;
-        }
-        
-        .contact-content {
-            position: relative;
-            z-index: 1;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 50px;
-        }
-        
-        .contact-info {
-            padding-right: 30px;
-        }
-        
-        .contact-item {
-            display: flex;
-            align-items: center;
-            margin-bottom: 30px;
-            transition: transform 0.3s ease;
-        }
-        
-        .contact-item:hover {
-            transform: translateX(10px);
-        }
-        
-        .contact-icon {
-            width: 60px;
-            height: 60px;
-            background: var(--primary);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 20px;
-            font-size: 1.5rem;
-            flex-shrink: 0;
-        }
-        
-        .contact-text h4 {
-            margin-bottom: 5px;
-            color: white;
-        }
-        
-        .contact-text p {
-            color: var(--gray);
-            margin: 0;
-        }
-        
-        .social-links {
-            display: flex;
-            gap: 15px;
-            margin-top: 30px;
-        }
-        
-        .social-link {
-            width: 50px;
-            height: 50px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-        }
-        
-        .social-link:hover {
-            background: var(--primary);
-            transform: translateY(-5px);
-        }
-        
+        .soc-big:hover { background:rgba(14,165,233,.15); color:#67e8f9; transform:translateY(-3px); }
+
+        /* contact form */
         .contact-form {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 40px;
-            border-radius: 15px;
-            backdrop-filter: blur(10px);
+            background:rgba(255,255,255,.03); border:1px solid rgba(255,255,255,.07);
+            border-radius:18px; padding:36px;
         }
-        
-        .form-group {
-            margin-bottom: 20px;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 500;
-            color: white;
-        }
-        
+        .form-group { margin-bottom:18px; }
+        .form-group label { display:block; color:#64748b; font-size:.82rem; font-weight:700; margin-bottom:8px; text-transform:uppercase; letter-spacing:.4px; }
         .form-control {
-            width: 100%;
-            padding: 15px;
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 8px;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            color: white;
+            width:100%; padding:13px 16px;
+            background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.1);
+            border-radius:9px; color:#e2e8f0; font-size:.95rem;
+            transition:border-color .2s, background .2s;
         }
-        
-        .form-control:focus {
-            outline: none;
-            border-color: var(--primary);
-            background: rgba(255, 255, 255, 0.15);
+        .form-control:focus { outline:none; border-color:rgba(14,165,233,.4); background:rgba(14,165,233,.06); }
+        .form-control::placeholder { color:#334155; }
+        textarea.form-control { min-height:130px; resize:vertical; }
+        .form-submit {
+            width:100%; padding:14px; border-radius:10px; border:none; cursor:pointer;
+            background:linear-gradient(135deg,#0ea5e9,#22c55e);
+            color:#fff; font-size:1rem; font-weight:800;
+            box-shadow:0 10px 28px rgba(14,165,233,.25);
+            transition:transform .2s, box-shadow .2s;
         }
-        
-        textarea.form-control {
-            min-height: 150px;
-            resize: vertical;
+        .form-submit:hover { transform:translateY(-2px); box-shadow:0 16px 36px rgba(14,165,233,.35); }
+        .form-success {
+            display:none; margin-top:14px; padding:14px 16px; border-radius:10px;
+            background:rgba(34,197,94,.08); border:1px solid rgba(34,197,94,.2);
+            color:#86efac; font-size:.9rem; text-align:center;
         }
-        
-        .form-control::placeholder {
-            color: rgba(255, 255, 255, 0.6);
+
+        /* ── FOOTER ── */
+        .site-footer { background:#040d19; border-top:1px solid rgba(255,255,255,.06); padding:36px 0; }
+        .footer-inner {
+            display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:18px;
         }
-        
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .footer-logo { font-size:1rem; font-weight:900; color:#fff; }
+        .footer-logo span { color:#67e8f9; }
+        .footer-links { display:flex; gap:20px; flex-wrap:wrap; }
+        .footer-links a { color:rgba(255,255,255,.35); font-size:.82rem; transition:color .2s; }
+        .footer-links a:hover { color:#fff; }
+        .footer-copy { color:rgba(255,255,255,.2); font-size:.78rem; }
+
+        /* ── RESPONSIVE ── */
+        @media(max-width:900px){
+            .hero-inner, .about-grid, .contact-grid { grid-template-columns:1fr; }
+            .project-grid { grid-template-columns:1fr; }
         }
-        
-        .floating-shapes {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            z-index: 0;
-        }
-        
-        .shape {
-            position: absolute;
-            opacity: 0.1;
-            animation: float 6s ease-in-out infinite;
-        }
-        
-        .shape:nth-child(1) {
-            top: 20%;
-            left: 10%;
-            animation-delay: 0s;
-        }
-        
-        .shape:nth-child(2) {
-            top: 60%;
-            left: 80%;
-            animation-delay: 2s;
-        }
-        
-        .shape:nth-child(3) {
-            top: 40%;
-            left: 70%;
-            animation-delay: 4s;
-        }
-        
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0) rotate(0deg);
-            }
-            50% {
-                transform: translateY(-20px) rotate(180deg);
-            }
-        }
-        
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .about-content {
-                flex-direction: column;
-            }
-            
-            .contact-content {
-                grid-template-columns: 1fr;
-            }
-            
-            .contact-info {
-                padding-right: 0;
-            }
-            
-            .nav-links {
-                display: none;
-            }
-            
-            .hero h1 {
-                font-size: 2.2rem;
-            }
-            
-            h2 {
-                font-size: 1.8rem;
-            }
+        @media(max-width:640px){
+            .container { width:min(100% - 32px,1120px); }
+            .hero { padding:100px 0 60px; }
+            .hero h1 { font-size:2.2rem; }
+            .section { padding:64px 0; }
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <nav>
-                <div class="logo">Imran Rifat</div>
-                <ul class="nav-links">
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#projects">Projects</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
 
-    <section class="hero" id="home">
-        <div class="floating-shapes">
-            <div class="shape" style="width: 50px; height: 50px; background: white; border-radius: 50%;"></div>
-            <div class="shape" style="width: 30px; height: 30px; background: white; border-radius: 50%;"></div>
-            <div class="shape" style="width: 70px; height: 70px; background: white; border-radius: 50%;"></div>
-        </div>
-        <div class="container">
-            <div class="hero-content">
-                <h1 data-aos="fade-up">Imran Hossan Rifat</h1>
-                <p data-aos="fade-up" data-aos-delay="200">Computing Science Student & Full-Stack Developer specializing in AI-powered applications</p>
-                <div class="hero-btns" data-aos="fade-up" data-aos-delay="400">
-                    <a href="#projects" class="btn">View My Work</a>
-                    <a href="#contact" class="btn" style="background: transparent; border: 2px solid white;">Get In Touch</a>
+<!-- NAV -->
+<nav class="site-nav" id="siteNav">
+    <div class="nav-logo">Imran <span>Rifat</span></div>
+    <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="https://imran-rifat.github.io/Price-Match-Paradise/landing_page.html" target="_blank" class="nav-cta">
+            <i class="fas fa-rocket"></i> Live App
+        </a></li>
+    </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+    <div class="hero-particles" id="particles"></div>
+    <div class="container">
+        <div class="hero-inner">
+            <div data-aos="fade-up">
+                <div class="eyebrow">
+                    <span></span> Open to co-op &amp; internship opportunities
+                </div>
+                <h1>Building apps<br>that <span class="grad">actually matter.</span></h1>
+                <p class="hero-desc">
+                    I'm Imran — a Computing Science student at Thompson Rivers University
+                    and full-stack developer specializing in AI-powered apps and mobile products.
+                    I ship real things, on real stores, used by real people.
+                </p>
+                <div class="hero-btns">
+                    <a href="#projects" class="btn btn-primary">
+                        <i class="fas fa-layer-group"></i> See My Work
+                    </a>
+                    <a href="https://github.com/Imran-Rifat" target="_blank" rel="noopener" class="btn btn-ghost">
+                        <i class="fab fa-github"></i> GitHub
+                    </a>
+                    <a href="#contact" class="btn btn-purple">
+                        <i class="fas fa-paper-plane"></i> Hire Me
+                    </a>
+                </div>
+                <div class="hero-chips">
+                    <span class="chip"><i class="fas fa-map-marker-alt"></i> Kamloops, BC</span>
+                    <span class="chip"><i class="fas fa-graduation-cap"></i> TRU · Dec 2027</span>
+                    <span class="chip"><i class="fas fa-mobile-alt"></i> iOS &amp; Android</span>
+                    <span class="chip"><i class="fas fa-brain"></i> AI / ML</span>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <!-- About Section -->
-    <section class="about" id="about">
-        <div class="container">
-            <h2 data-aos="fade-up">About Me</h2>
-            <div class="about-content">
-                <div class="about-text" data-aos="fade-right">
-                    <p>I'm a results-driven Computing Science student at Thompson Rivers University with hands-on experience in the full software development lifecycle, from concept to deployment. I have successfully designed, developed, and published full-stack AI-powered applications.</p>
-                    <p>My technical expertise spans Flutter, Python, and modern web technologies with a strong foundation in algorithms and data structures. I'm passionate about creating innovative solutions that leverage artificial intelligence to solve real-world problems.</p>
-                    
-                    <h3 style="margin-top: 30px;">Technical Skills</h3>
-                    <div class="skills">
-                        <span class="skill-tag">Python</span>
-                        <span class="skill-tag">Java</span>
-                        <span class="skill-tag">Dart</span>
-                        <span class="skill-tag">Flutter</span>
-                        <span class="skill-tag">JavaScript</span>
-                        <span class="skill-tag">Flask</span>
-                        <span class="skill-tag">Firebase</span>
-                        <span class="skill-tag">REST APIs</span>
-                        <span class="skill-tag">OpenAI API</span>
-                        <span class="skill-tag">Git</span>
-                        <span class="skill-tag">MySQL</span>
-                        <span class="skill-tag">HTML/CSS</span>
+            <div data-aos="zoom-in" data-aos-delay="150">
+                <div class="profile-card">
+                    <div class="profile-img-ring">
+                        <img src="asset/profile/profile_pic2.png" alt="Imran Hossan Rifat"
+                             onerror="this.onerror=null;this.style.display='none';this.parentNode.style.background='linear-gradient(135deg,#0ea5e9,#8b5cf6)';">
+                        <div class="dot"></div>
                     </div>
-
-                    <div class="education-timeline">
-                        <h3>Education</h3>
-                        <div class="timeline-item" data-aos="fade-up">
-                            <h4>Bachelor of Computing Science</h4>
-                            <p><strong>Thompson Rivers University</strong>, Kamloops, BC</p>
-                            <p>Expected Graduation: December 2027</p>
-                            <p><em>Relevant Coursework: Software Engineering, Mobile Application Development, Algorithms & Data Structures, Database Systems, Object-Oriented Programming</em></p>
-                        </div>
+                    <div class="profile-name">Imran Hossan Rifat</div>
+                    <div class="profile-role">Full-Stack Developer · CS Student</div>
+                    <div class="profile-uni"><i class="fas fa-university" style="color:#475569;margin-right:5px;"></i>Thompson Rivers University</div>
+                    <div class="profile-pills">
+                        <span class="pill">Flutter · Dart</span>
+                        <span class="pill">Python · Flask</span>
+                        <span class="pill">Firebase</span>
+                        <span class="pill">OpenAI API</span>
+                        <span class="pill">Swift / iOS</span>
                     </div>
-                </div>
-                <div class="about-image" data-aos="fade-left">
-                    <!-- ADD YOUR PROFILE PHOTO HERE -->
-                    <div style="width: 100%; height: 500px; background: linear-gradient(45deg, var(--primary), var(--primary-dark)); display: flex; align-items: center; justify-content: center; border-radius: 10px; color: white;">
-                        <div style="text-align: center;">
-                            <i class="fas fa-user" style="font-size: 4rem; margin-bottom: 20px;"></i>
-                            <p><img src="asset/profile/profile_pic_1.jpg" alt="Your Profile Photo" style="width: 80%; height: 300px; object-fit: cover; border-radius: 10px;"></p>
-                        </div>
+                    <div class="profile-socials">
+                        <a href="https://github.com/Imran-Rifat" target="_blank" class="soc"><i class="fab fa-github"></i></a>
+                        <a href="https://linkedin.com/in/imran-rifat" target="_blank" class="soc"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="mailto:athormod2@gmail.com" class="soc"><i class="fas fa-envelope"></i></a>
+                        <a href="https://imran-rifat.github.io/Price-Match-Paradise/landing_page.html" target="_blank" class="soc"><i class="fas fa-rocket"></i></a>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Projects Section -->
-    <section class="projects" id="projects">
-        <div class="container">
-            <h2 data-aos="fade-up">My Projects</h2>
-            <div class="project-grid">
-                <div class="project-card" data-aos="fade-up" data-aos-delay="200" onclick="openProject('ai-learning-platform.html')">
-                    <div class="project-img">
-                        <div style="width: 100%; height: 100%; background: linear-gradient(45deg, #667eea, #764ba2); display: flex; align-items: center; justify-content: center; color: white;">
-                            <i class="fas fa-brain" style="font-size: 3rem;"></i>
+<!-- ABOUT -->
+<section class="section about-bg" id="about">
+    <div class="container">
+        <div class="about-grid">
+            <div data-aos="fade-right">
+                <div class="sec-kicker">About Me</div>
+                <h2 class="sec-h2">Code, ship, repeat.</h2>
+                <div class="about-body">
+                    <p>I'm a <strong style="color:#e2e8f0;">published Android &amp; iOS developer</strong> and Computing Science student at TRU with hands-on experience across the full software development lifecycle — from whiteboard to App Store. I don't just build projects; I ship them to real users.</p>
+                    <p>My flagship product, <strong style="color:#e2e8f0;">Price Match Paradise</strong>, is a live barcode-scanning grocery app with real subscriptions, a 4.8★ App Store rating, and an average user saving $28 per trip. Designed, built, and launched solo.</p>
+                    <p>Outside of school I've built multiple AI-powered platforms — a <strong style="color:#e2e8f0;">DSA learning engine</strong> that generates coding problems via GPT-4, and an <strong style="color:#e2e8f0;">algorithm learning platform</strong> deployed on Render with user auth and multi-subject courses.</p>
+                    <p>I'm actively seeking co-op or internship opportunities where I can contribute fast, learn faster, and ship real things.</p>
+                </div>
+                <div class="skill-groups" style="margin-top:28px;">
+                    <div class="skill-group">
+                        <div class="skill-group-label">Mobile</div>
+                        <div class="skill-tags-wrap">
+                            <span class="stag">Flutter</span><span class="stag">Dart</span>
+                            <span class="stag">Swift</span><span class="stag">SwiftUI</span>
+                            <span class="stag">Kotlin</span>
                         </div>
                     </div>
-                    <div class="project-content">
-                        <h3>AI-Powered Learning Platform</h3>
-                        <p>Intelligent resume analysis and personalized learning path generation using AI</p>
-                        <div class="project-tags">
-                            <span class="project-tag">Python</span>
-                            <span class="project-tag">Flask</span>
-                            <span class="project-tag">OpenAI API</span>
-                            <span class="project-tag">JavaScript</span>
+                    <div class="skill-group">
+                        <div class="skill-group-label">Backend &amp; AI</div>
+                        <div class="skill-tags-wrap">
+                            <span class="stag">Python</span><span class="stag">Flask</span>
+                            <span class="stag">Firebase</span><span class="stag">OpenAI API</span>
+                            <span class="stag">REST APIs</span><span class="stag">MySQL</span>
+                        </div>
+                    </div>
+                    <div class="skill-group">
+                        <div class="skill-group-label">Languages &amp; Tools</div>
+                        <div class="skill-tags-wrap">
+                            <span class="stag">Java</span><span class="stag">JavaScript</span>
+                            <span class="stag">HTML/CSS</span><span class="stag">Git</span>
+                            <span class="stag">Xcode</span><span class="stag">Android Studio</span>
+                            <span class="stag">Maven</span><span class="stag">GitHub Actions</span>
+                            <span class="stag">Render</span>
                         </div>
                     </div>
                 </div>
-                
->>>>>>> Stashed changes
-                <div class="project-card" data-aos="fade-up" data-aos-delay="400" onclick="openProject('price-checker-pro.html')">
-                    <div class="project-img">
-                        <div style="width: 100%; height: 100%; background: linear-gradient(45deg, #0369a1, #22c55e); display: flex; align-items: center; justify-content: center; color: white;">
-                            <i class="fas fa-tags" style="font-size: 3rem;"></i>
+            </div>
+
+            <div data-aos="fade-left">
+                <div class="sec-kicker">Education</div>
+                <div class="edu-card">
+                    <h3>Bachelor of Computing Science</h3>
+                    <p><strong style="color:#94a3b8;">Thompson Rivers University</strong> · Kamloops, BC, Canada</p>
+                    <p style="margin-top:6px;">Expected Graduation: December 2027</p>
+                    <p style="margin-top:10px;font-size:.85rem;">Relevant Coursework: Software Engineering · Mobile App Dev · Algorithms &amp; Data Structures · Database Systems · Object-Oriented Programming</p>
+                    <span class="badge">Co-op Ready · May 2025</span>
+                </div>
+
+                <div style="margin-top:24px;" class="sec-kicker">Work Experience</div>
+                <div class="exp-card">
+                    <div class="exp-head">
+                        <div>
+                            <div class="exp-co"><i class="fas fa-store" style="margin-right:6px;color:#f59e0b;"></i>The Home Depot</div>
+                            <h3>Garden Centre Associate</h3>
+                        </div>
+                        <div class="exp-date">2023 – 2025</div>
+                    </div>
+                    <p>Served hundreds of customers daily in a fast-paced retail environment. Recognized by management for outstanding customer service and workplace excellence.</p>
+                    <span class="exp-badge"><i class="fas fa-award" style="margin-right:4px;"></i>Recognized for Excellence</span>
+                </div>
+
+                <div style="margin-top:20px;" class="sec-kicker">Highlights</div>
+                <div style="display:grid;gap:12px;">
+                    <div class="contact-row">
+                        <div class="ci-icon"><i class="fab fa-apple"></i></div>
+                        <div>
+                            <div class="ci-label">Published on App Store</div>
+                            <div class="ci-val">Price Match Paradise · 4.8★</div>
                         </div>
                     </div>
-                    <div class="project-content">
-                        <h3>Price Match Paradise</h3>
-                        <p>Commercial-ready savings app with AI receipt scanning, price matching, and Pro subscription upgrade flows</p>
-                        <div class="project-tags">
-                            <span class="project-tag">Flutter</span>
-                            <span class="project-tag">Dart</span>
-                            <span class="project-tag">AI Vision</span>
-                            <span class="project-tag">Firebase</span>
-                            <span class="project-tag">Subscriptions</span>
+                    <div class="contact-row">
+                        <div class="ci-icon"><i class="fab fa-google-play"></i></div>
+                        <div>
+                            <div class="ci-label">Published on Google Play</div>
+                            <div class="ci-val">Price Match Paradise</div>
+                        </div>
+                    </div>
+                    <div class="contact-row">
+                        <div class="ci-icon"><i class="fab fa-github"></i></div>
+                        <div>
+                            <div class="ci-label">12 Public Repos</div>
+                            <div class="ci-val">github.com/Imran-Rifat</div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Contact Section -->
-    <section class="contact" id="contact">
-        <div class="floating-shapes">
-            <div class="shape" style="width: 40px; height: 40px; background: var(--primary); border-radius: 50%;"></div>
-            <div class="shape" style="width: 60px; height: 60px; background: var(--primary); border-radius: 50%;"></div>
-            <div class="shape" style="width: 30px; height: 30px; background: var(--primary); border-radius: 50%;"></div>
-        </div>
-        <div class="container">
-            <h2 data-aos="fade-up" style="color: white;">Get In Touch</h2>
-            <div class="contact-content">
-                <div class="contact-info" data-aos="fade-right">
-                    <h3 style="color: white; margin-bottom: 30px;">Let's Connect</h3>
-                    <p style="color: var(--gray); margin-bottom: 40px;">I'm currently seeking co-op/internship opportunities starting May 2025. Feel free to reach out if you're interested in working together!</p>
-                    
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-envelope"></i>
-                        </div>
-                        <div class="contact-text">
-                            <h4>Email</h4>
-                            <p>athormod2@gmail.com</p>
-                        </div>
-                    </div>
-                    
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-phone"></i>
-                        </div>
-                        <div class="contact-text">
-                            <h4>Phone</h4>
-                            <p>+1 (250) 879-3907</p>
-                        </div>
-                    </div>
-                    
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-map-marker-alt"></i>
-                        </div>
-                        <div class="contact-text">
-                            <h4>Location</h4>
-                            <p>Kamloops, BC, Canada</p>
-                        </div>
-                    </div>
+<!-- PROJECTS -->
+<section class="section projects-bg" id="projects">
+    <div class="container">
+        <div class="sec-kicker" data-aos="fade-up">Projects</div>
+        <h2 class="sec-h2" data-aos="fade-up">Things I've built &amp; shipped.</h2>
+        <p class="sec-lead" data-aos="fade-up">Real products — not just side projects. Live apps, AI backends, and deployed platforms.</p>
 
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-graduation-cap"></i>
-                        </div>
-                        <div class="contact-text">
-                            <h4>Education</h4>
-                            <p>Thompson Rivers University</p>
-                        </div>
+        <div class="project-grid three">
+
+            <!-- Price Match Paradise -->
+            <div class="proj-card" data-aos="fade-up" onclick="window.open('price-checker-pro.html','_self')">
+                <div class="proj-thumb" style="background:linear-gradient(135deg,#0a1628,#0d2a4a);">
+                    <div style="position:absolute;inset:0;background:radial-gradient(circle at 70% 30%,rgba(14,165,233,.18),transparent 60%);"></div>
+                    <div class="proj-icon" style="font-size:2.8rem;">🛒</div>
+                    <div style="position:absolute;top:14px;right:14px;">
+                        <span class="live-dot">Live</span>
                     </div>
-                    
-                    <div class="social-links">
-                        <a href="https://linkedin.com/in/imran-rifat" class="social-link" target="_blank">
-                            <i class="fab fa-linkedin-in"></i>
+                </div>
+                <div class="proj-body">
+                    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:7px;">
+                        <div class="proj-title">Price Match Paradise</div>
+                    </div>
+                    <p class="proj-desc">Barcode-scanning grocery app that compares live prices across 50+ stores. Real subscriptions, App Store + Google Play, 4.8★ rating, average user saves $28 per trip.</p>
+                    <div class="proj-tags">
+                        <span class="ptag">Flutter</span><span class="ptag">Dart</span>
+                        <span class="ptag">Firebase</span><span class="ptag">AI Vision</span>
+                        <span class="ptag">Subscriptions</span><span class="ptag">iOS &amp; Android</span>
+                    </div>
+                    <div class="proj-links">
+                        <a href="price-checker-pro.html" class="plink plink-primary" onclick="event.stopPropagation()">
+                            <i class="fas fa-info-circle"></i> Case Study
                         </a>
-                        <a href="https://github.com/Imran-Rifat" class="social-link" target="_blank">
+                        <a href="https://imran-rifat.github.io/Price-Match-Paradise/landing_page.html" target="_blank" class="plink plink-live" onclick="event.stopPropagation()">
+                            <i class="fas fa-external-link-alt"></i> Live Site
+                        </a>
+                        <a href="https://github.com/Imran-Rifat/Price-Match-Paradise" target="_blank" class="plink plink-ghost" onclick="event.stopPropagation()">
                             <i class="fab fa-github"></i>
                         </a>
-                        <a href="#" class="social-link">
-                            <i class="fab fa-twitter"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DSA AI Learning Platform -->
+            <div class="proj-card" data-aos="fade-up" data-aos-delay="100" onclick="window.open('ai-learning-platform.html','_self')">
+                <div class="proj-thumb" style="background:linear-gradient(135deg,#1a0a2e,#2d1459);">
+                    <div style="position:absolute;inset:0;background:radial-gradient(circle at 30% 70%,rgba(139,92,246,.2),transparent 60%);"></div>
+                    <div class="proj-icon" style="font-size:2.8rem;">🧠</div>
+                </div>
+                <div class="proj-body">
+                    <div class="proj-title">SoloLeveling — DSA Platform</div>
+                    <p class="proj-desc">AI-powered DSA learning engine. GPT-4 generates coding problems across 6 chapters (Arrays, Linked Lists, Trees, Graphs, DP…) with 10 difficulty levels and live code validation in 5 languages.</p>
+                    <div class="proj-tags">
+                        <span class="ptag">Python</span><span class="ptag">Flask</span>
+                        <span class="ptag">OpenAI GPT-4</span><span class="ptag">JavaScript</span>
+                        <span class="ptag">Render</span><span class="ptag">REST API</span>
+                    </div>
+                    <div class="proj-links">
+                        <a href="ai-learning-platform.html" class="plink plink-primary" onclick="event.stopPropagation()">
+                            <i class="fas fa-info-circle"></i> Case Study
+                        </a>
+                        <a href="https://github.com/Imran-Rifat/Solo-Leveling" target="_blank" class="plink plink-ghost" onclick="event.stopPropagation()">
+                            <i class="fab fa-github"></i> GitHub
                         </a>
                     </div>
                 </div>
-                
-                <div class="contact-form" data-aos="fade-left">
+            </div>
+
+            <!-- AlgoLearn -->
+            <div class="proj-card" data-aos="fade-up" data-aos-delay="180" onclick="window.open('https://github.com/Imran-Rifat/AlgoLearn','_blank')">
+                <div class="proj-thumb" style="background:linear-gradient(135deg,#071a10,#0a3320);">
+                    <div style="position:absolute;inset:0;background:radial-gradient(circle at 60% 40%,rgba(34,197,94,.15),transparent 60%);"></div>
+                    <div class="proj-icon" style="font-size:2.8rem;">📚</div>
+                </div>
+                <div class="proj-body">
+                    <div class="proj-title">AlgoLearn</div>
+                    <p class="proj-desc">Multi-subject educational platform with user auth, course dashboards, and content across DSA, mathematics, engineering, and software development. Python backend deployed on Render.</p>
+                    <div class="proj-tags">
+                        <span class="ptag">Python</span><span class="ptag">Flask</span>
+                        <span class="ptag">HTML/CSS/JS</span><span class="ptag">Render</span>
+                        <span class="ptag">Auth</span><span class="ptag">Multi-subject</span>
+                    </div>
+                    <div class="proj-links">
+                        <a href="https://github.com/Imran-Rifat/AlgoLearn" target="_blank" class="plink plink-primary" onclick="event.stopPropagation()">
+                            <i class="fab fa-github"></i> View Repo
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section contact-bg" id="contact">
+    <div class="container">
+        <div class="sec-kicker" data-aos="fade-up">Contact</div>
+        <h2 class="sec-h2" data-aos="fade-up">Let's work together.</h2>
+        <p class="sec-lead" data-aos="fade-up">Actively seeking co-op / internship opportunities starting May 2025. Open to full-time roles after graduation.</p>
+
+        <div class="contact-grid">
+            <div data-aos="fade-right">
+                <div class="contact-info-list">
+                    <div class="contact-row">
+                        <div class="ci-icon"><i class="fas fa-envelope"></i></div>
+                        <div>
+                            <div class="ci-label">Email</div>
+                            <div class="ci-val">athormod2@gmail.com</div>
+                        </div>
+                    </div>
+                    <div class="contact-row">
+                        <div class="ci-icon"><i class="fas fa-phone"></i></div>
+                        <div>
+                            <div class="ci-label">Phone</div>
+                            <div class="ci-val">+1 (250) 879-3907</div>
+                        </div>
+                    </div>
+                    <div class="contact-row">
+                        <div class="ci-icon"><i class="fas fa-map-marker-alt"></i></div>
+                        <div>
+                            <div class="ci-label">Location</div>
+                            <div class="ci-val">Kamloops, BC, Canada</div>
+                        </div>
+                    </div>
+                    <div class="contact-row">
+                        <div class="ci-icon"><i class="fas fa-graduation-cap"></i></div>
+                        <div>
+                            <div class="ci-label">University</div>
+                            <div class="ci-val">Thompson Rivers University</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="socials-row">
+                    <a href="https://linkedin.com/in/imran-rifat" target="_blank" class="soc-big">
+                        <i class="fab fa-linkedin-in"></i> LinkedIn
+                    </a>
+                    <a href="https://github.com/Imran-Rifat" target="_blank" class="soc-big">
+                        <i class="fab fa-github"></i> GitHub
+                    </a>
+                    <a href="https://imran-rifat.github.io/Price-Match-Paradise/landing_page.html" target="_blank" class="soc-big">
+                        <i class="fas fa-rocket"></i> App
+                    </a>
+                </div>
+            </div>
+
+            <div data-aos="fade-left">
+                <div class="contact-form">
                     <form id="contactForm">
                         <div class="form-group">
-                            <label for="name">Your Name</label>
-                            <input type="text" id="name" class="form-control" placeholder="Enter your name" required>
+                            <label>Your Name</label>
+                            <input type="text" class="form-control" placeholder="Jane Smith" required>
                         </div>
-                        
                         <div class="form-group">
-                            <label for="email">Your Email</label>
-                            <input type="email" id="email" class="form-control" placeholder="Enter your email" required>
+                            <label>Email Address</label>
+                            <input type="email" class="form-control" placeholder="jane@company.com" required>
                         </div>
-                        
                         <div class="form-group">
-                            <label for="subject">Subject</label>
-                            <input type="text" id="subject" class="form-control" placeholder="Enter subject" required>
+                            <label>Subject</label>
+                            <input type="text" class="form-control" placeholder="Co-op opportunity at Acme Corp" required>
                         </div>
-                        
                         <div class="form-group">
-                            <label for="message">Your Message</label>
-                            <textarea id="message" class="form-control" placeholder="Enter your message" required></textarea>
+                            <label>Message</label>
+                            <textarea class="form-control" placeholder="Tell me about the role or project..." required></textarea>
                         </div>
-                        
-                        <button type="submit" class="btn" style="width: 100%;">Send Message</button>
+                        <button type="submit" class="form-submit">
+                            <i class="fas fa-paper-plane"></i>&nbsp; Send Message
+                        </button>
+                        <div class="form-success" id="formSuccess">
+                            ✅ Message sent! I'll get back to you within 24 hours.
+                        </div>
                     </form>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-        // Initialize AOS
-        AOS.init({
-            duration: 1000,
-            once: true,
-            offset: 100
-        });
+<!-- FOOTER -->
+<footer class="site-footer">
+    <div class="container">
+        <div class="footer-inner">
+            <div class="footer-logo">Imran <span>Rifat</span></div>
+            <div class="footer-links">
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#projects">Projects</a>
+                <a href="#contact">Contact</a>
+                <a href="price-checker-pro.html">Price Match Paradise</a>
+                <a href="ai-learning-platform.html">AI Platform</a>
+                <a href="https://imran-rifat.github.io/Price-Match-Paradise/landing_page.html" target="_blank">Live App</a>
+            </div>
+            <div class="footer-copy">© 2026 Imran Hossan Rifat · Kamloops, BC</div>
+        </div>
+    </div>
+</footer>
 
-        // Header scroll effect
-        window.addEventListener('scroll', function() {
-            const header = document.querySelector('header');
-            if (window.scrollY > 100) {
-                header.style.background = 'rgba(255, 255, 255, 0.98)';
-                header.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
-            } else {
-                header.style.background = 'rgba(255, 255, 255, 0.95)';
-                header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
-            }
-        });
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init({ duration:800, once:true, offset:80 });
 
-        // Smooth scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
+    const nav = document.getElementById("siteNav");
+    window.addEventListener("scroll", () => nav.classList.toggle("scrolled", scrollY > 28), { passive:true });
 
-        // Project navigation
-        function openProject(url) {
-            window.location.href = url;
+    // particles
+    (function(){
+        const c = document.getElementById("particles");
+        for(let i=0;i<20;i++){
+            const p=document.createElement("span");
+            const s=3+Math.random()*12;
+            p.style.cssText=`width:${s}px;height:${s}px;left:${Math.random()*100}%;animation-duration:${9+Math.random()*14}s;animation-delay:-${Math.random()*12}s;`;
+            c.appendChild(p);
         }
+    })();
 
-        // Contact form submission
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Get form values
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const subject = document.getElementById('subject').value;
-            const message = document.getElementById('message').value;
-            
-            // Here you would typically send the data to a server
-            // For now, we'll just show a success message
-            alert(`Thank you ${name}! Your message has been sent successfully. I'll get back to you soon at ${email}.`);
-            
-            // Reset form
-            this.reset();
-        });
-
-        // Skill tags animation
-        const skillTags = document.querySelectorAll('.skill-tag');
-        skillTags.forEach(tag => {
-            tag.addEventListener('mouseenter', () => {
-                tag.style.transform = 'translateY(-5px) scale(1.05)';
-            });
-            
-            tag.addEventListener('mouseleave', () => {
-                tag.style.transform = 'translateY(0) scale(1)';
-            });
-        });
-
-        // Add typing effect to hero text
-        const heroText = "Computing Science Student & Full-Stack Developer specializing in AI-powered applications";
-        let i = 0;
-        const speed = 50;
-        
-        function typeWriter() {
-            if (i < heroText.length) {
-                document.querySelector('.hero p').textContent += heroText.charAt(i);
-                i++;
-                setTimeout(typeWriter, speed);
-            }
-        }
-        
-        // Start typing effect when page loads
-        window.addEventListener('load', () => {
-            document.querySelector('.hero p').textContent = '';
-            setTimeout(typeWriter, 1000);
-        });
-    </script>
+    // contact form
+    document.getElementById("contactForm").addEventListener("submit", function(e){
+        e.preventDefault();
+        const btn = this.querySelector(".form-submit");
+        btn.textContent = "Sending…"; btn.disabled = true;
+        setTimeout(() => {
+            document.getElementById("formSuccess").style.display = "block";
+            btn.style.display = "none";
+        }, 1200);
+    });
+</script>
 </body>
 </html>
